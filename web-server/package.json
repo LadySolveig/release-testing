@@ -1,7 +1,7 @@
 {
 	"name": "joomla_extension",
 	"version": "1.0.0",
-	"description": "Joomla module for zitat-service.de",
+	"description": "Joomla release testing",
 	"main": "index.js",
 	"directories": {
 	  "test": "test"

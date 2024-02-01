@@ -56,7 +56,7 @@ services:
 
   cypress:
     container_name: test_joomla_cypress_local
-    image: cypress/included:12.8.1 # actual 13. + Chrome 116. + Edge 116. + Firefox 117.
+    image: cypress/included:13.6.4
     restart: "no"
     entrypoint: ${ROOT}/scripts/exec-cypress.sh
     ports:

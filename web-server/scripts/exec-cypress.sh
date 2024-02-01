@@ -3,7 +3,7 @@
 echo "Installing the assets (takes a while!)"
 rm -rf "${ROOT}/node_modules"
 cd "${ROOT}"
-npm update
+npm ci
 
 echo "Start creating cypress.config.js"
 source  ${ROOT}/scripts/config-setup.sh
