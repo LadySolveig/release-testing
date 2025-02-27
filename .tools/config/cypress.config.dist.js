@@ -1,22 +1,25 @@
-import { defineConfig } from 'cypress';
-import setupPlugins from './cypress/plugins/index.mjs';
+const { defineConfig } = require('cypress');
+const setupPlugins = require('./System/plugins/index');
 
-export default defineConfig({
-	fixturesFolder: 'cypress/fixtures',
-	videosFolder: '../output/videos/{SITE_PATH_BASENAME}',
-	screenshotsFolder: '../output/screenshots/{SITE_PATH_BASENAME}',
+module.exports = defineConfig({
+	fixturesFolder: 'System/fixtures',
+	videosFolder: 'System/output/videos',
+	screenshotsFolder: 'System/output/screenshots',
 	viewportHeight: 1000,
 	viewportWidth: 1200,
 	e2e: {
 		setupNodeEvents(on, config) {
 			setupPlugins(on, config);
-			return config
 		},
 		specPattern: [
-			'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+			// 'System/integration/install/**/*.cy.{js,jsx,ts,tsx}',
+			'System/integration/administrator/**/*.cy.{js,jsx,ts,tsx}',
+			// 'System/integration/site/**/*.cy.{js,jsx,ts,tsx}',
+			// 'System/integration/api/**/*.cy.{js,jsx,ts,tsx}',
+			'System/integration/plugins/**/*.cy.{js,jsx,ts,tsx}',
 		],
 		baseUrl: "{BASE_URL}",
-		supportFile: 'cypress/support/index.js',
+		supportFile: 'System/support/index.js',
 		scrollBehavior: 'center',
 		browser: 'firefox',
 		screenshotOnRunFailure: true,
@@ -28,8 +31,8 @@ export default defineConfig({
 	},
 	env: {
 		sitename: '{SITENAME}',
-		name: 'Cy-Admin',
-		email: 'cy-admin@example.local',
+		name: 'Admin',
+		email: 'admin@example.local',
 		username: '{JOOMLA_USERNAME}',
 		password: '{JOOMLA_PASSWORD}',
 		api_token: '{JOOMLA_TOKEN}',
@@ -50,12 +53,12 @@ export default defineConfig({
 	reporter: 'cypress-mochawesome-reporter',
 	reporterOptions: {
 		charts: true,
-		reportPageTitle: 'Joomla-Tests - {TEST_PROJECT}',
+		reportPageTitle: 'Joomla-Tests',
 		timestamp: 'yyyy-mm-dd_HH-MM',
-		// embeddedScreenshots: true,
+		embeddedScreenshots: true,
 		inlineAssets: true,
 		saveAllAttempts: false,
-		reportDir: '../output/reports/{SITE_PATH_BASENAME}',
+		reportDir: 'System/output/reports',
 		overwrite: false,
 	}
 });
